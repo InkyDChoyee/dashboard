@@ -1,0 +1,53 @@
+{
+  "sales_rate": [
+    {
+      "month": "1",
+      "productA": 120,
+      "productB": 150,
+      "productC": 80
+    },
+    {
+      "month": "2",
+      "productA": 200,
+      "productB": 180,
+      "productC": 160
+    },
+    {
+      "month": "3월",
+      "productA": 150,
+      "productB": 210,
+      "productC": 190
+    }
+  ],
+  "user_score": [
+    {
+      "product": "productA",
+      "score": 4.5
+    },
+    {
+      "product": "productB",
+      "score": 4.7
+    },
+    {
+      "product": "productC",
+      "score": 4.3
+    }
+  ],
+  "indicators": [
+    {
+      "product": "productA",
+      "battery_life": "10h",
+      "processing_speed": "fast"
+    },
+    {
+      "product": "productB",
+      "battery_life": "12h",
+      "processing_speed": "medium"
+    },
+    {
+      "product": "productC",
+      "battery_life": "8h",
+      "processing_speed": "slow"
+    }
+  ]
+}
