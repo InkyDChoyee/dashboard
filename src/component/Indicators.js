@@ -1,64 +1,120 @@
-import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import "chartjs-adapter-moment"; // Moment.js와 함께 사용할 수 있도록 adapter를 가져옵니다.
+import React, { useEffect, useState } from "react";
+import { Scatter } from "react-chartjs-2";
+import "chartjs-adapter-moment";
 import data from "./problem_3_data.json";
 
-// Chart.js에서 LinearScale을 가져옵니다.
-
-const Sales = () => {
-  const [saleData, setSaleData] = useState(null);
+const Indicators = () => {
+  const [indicatorsData, setIndicatorsData] = useState(null);
 
   useEffect(() => {
-    // 데이터를 조정하여 saleData에 설정
-    const labels = data.sales_rate.map((item) => item.month);
-    const productAData = data.sales_rate.map((item) => item.productA);
-    const productBData = data.sales_rate.map((item) => item.productB);
-    const productCData = data.sales_rate.map((item) => item.productC);
+    // 데이터를 조정하여 indicatorsData에 설정
+    const productAData = data.indicators
+      .filter((item) => item.product === "productA")
+      .map((item) => ({
+        x: parseInt(item.battery_life), // 문자열을 정수로 변환
+        y:
+          item.processing_speed === "fast"
+            ? 1
+            : item.processing_speed === "medium"
+            ? 2
+            : 3,
+        label: item.product,
+        backgroundColor: "rgba(255, 99, 132, 0.6)",
+      }));
 
-    setSaleData({
-      labels: labels,
+    const productBData = data.indicators
+      .filter((item) => item.product === "productB")
+      .map((item) => ({
+        x: parseInt(item.battery_life), // 문자열을 정수로 변환
+        y:
+          item.processing_speed === "fast"
+            ? 1
+            : item.processing_speed === "medium"
+            ? 2
+            : 3,
+        label: item.product,
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+      }));
+
+    const productCData = data.indicators
+      .filter((item) => item.product === "productC")
+      .map((item) => ({
+        x: parseInt(item.battery_life), // 문자열을 정수로 변환
+        y:
+          item.processing_speed === "fast"
+            ? 1
+            : item.processing_speed === "medium"
+            ? 2
+            : 3,
+        label: item.product,
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+      }));
+
+    setIndicatorsData({
       datasets: [
         {
           label: "Product A",
           data: productAData,
-          borderColor: "rgba(255, 99, 132, 1)",
-          fill: false,
         },
         {
           label: "Product B",
           data: productBData,
-          borderColor: "rgba(54, 162, 235, 1)",
-          fill: false,
         },
         {
           label: "Product C",
           data: productCData,
-          borderColor: "rgba(75, 192, 192, 1)",
-          fill: false,
         },
       ],
     });
   }, []);
 
-  if (!saleData) {
+  if (!indicatorsData) {
     return <div>Loading...</div>;
   }
 
   const options = {
     scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Battery Life (hours)",
+        },
+        type: "linear", // x축의 데이터 타입을 linear로 설정
+        position: "bottom", // x축을 아래쪽에 표시
+        min: 7,
+        max: 13,
+      },
       y: {
-        type: "linear",
-        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Processing Speed",
+        },
+        ticks: {
+          callback: function (value, index, values) {
+            switch (value) {
+              case 1:
+                return "Fast";
+              case 2:
+                return "Medium";
+              case 3:
+                return "Slow";
+              default:
+                return "";
+            }
+          },
+        },
+        min: 0.5,
+        max: 3.5,
       },
     },
   };
 
   return (
     <div>
-      <h1>월별 제품 판매량</h1>
-      <Line data={saleData} options={options} />
+      <h1>Product Indicators</h1>
+      <Scatter data={indicatorsData} options={options} />
     </div>
   );
 };
 
-export default Sales;
+export default Indicators;
