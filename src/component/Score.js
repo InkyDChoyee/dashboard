@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import Chart from "chart.js/auto"; // Chart.js의 모든 모듈을 가져옵니다.
 import "chartjs-adapter-moment"; // Moment.js와 함께 사용할 수 있도록 adapter를 가져옵니다.
 import data from "./problem_3_data.json";
 
 // Chart.js에서 LinearScale을 가져옵니다.
-import { LinearScale } from "chart.js";
 
 const Sales = () => {
   const [saleData, setSaleData] = useState(null);
