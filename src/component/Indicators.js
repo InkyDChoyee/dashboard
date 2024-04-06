@@ -18,6 +18,7 @@ const Indicators = () => {
             : item.processing_speed === "medium"
             ? 2
             : 3,
+        r: 10,
         label: item.product,
         backgroundColor: "rgba(255, 99, 132, 0.6)",
       }));
@@ -32,6 +33,7 @@ const Indicators = () => {
             : item.processing_speed === "medium"
             ? 2
             : 3,
+        r: 10,
         label: item.product,
         backgroundColor: "rgba(54, 162, 235, 0.6)",
       }));
@@ -46,6 +48,7 @@ const Indicators = () => {
             : item.processing_speed === "medium"
             ? 2
             : 3,
+        r: 10,
         label: item.product,
         backgroundColor: "rgba(75, 192, 192, 0.6)",
       }));
@@ -55,14 +58,17 @@ const Indicators = () => {
         {
           label: "Product A",
           data: productAData,
+          pointRadius: 10, // 데이터셋에 pointRadius 속성 추가
         },
         {
           label: "Product B",
           data: productBData,
+          pointRadius: 10, // 데이터셋에 pointRadius 속성 추가
         },
         {
           label: "Product C",
           data: productCData,
+          pointRadius: 10, // 데이터셋에 pointRadius 속성 추가
         },
       ],
     });
