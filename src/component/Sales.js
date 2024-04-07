@@ -47,18 +47,20 @@ const Sales = () => {
   }
 
   const options = {
+    maintainAspectRatio: false, // 종횡비를 유지하지 않음
     scales: {
       y: {
         type: "linear",
-        beginAtZero: true,
       },
     },
   };
 
   return (
-    <div>
+    <div className="sales">
       <h1>월별 제품 판매량</h1>
-      <Line data={saleData} options={options} />
+      <div className="lineChartBox">
+        <Line data={saleData} options={options} />
+      </div>
     </div>
   );
 };

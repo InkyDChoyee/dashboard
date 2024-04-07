@@ -38,6 +38,7 @@ const Score = () => {
   }
 
   const options = {
+    maintainAspectRatio: false, // 종횡비를 유지하지 않음
     indexAxis: "y", // y축을 기준으로 막대형 그래프 생성
     scales: {
       x: {
@@ -50,9 +51,11 @@ const Score = () => {
   };
 
   return (
-    <div>
+    <div className="score">
       <h1>제품별 점수</h1>
-      <Bar data={scoreData} options={options} />
+      <div className="barChartBox">
+        <Bar data={scoreData} options={options} />
+      </div>
     </div>
   );
 };

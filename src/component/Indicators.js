@@ -79,6 +79,7 @@ const Indicators = () => {
   }
 
   const options = {
+    maintainAspectRatio: false, // 종횡비를 유지하지 않음
     scales: {
       x: {
         title: {
@@ -116,9 +117,11 @@ const Indicators = () => {
   };
 
   return (
-    <div>
-      <h1>Product Indicators</h1>
-      <Scatter data={indicatorsData} options={options} />
+    <div className="indicators">
+      <h1>제품별 성능 지표</h1>
+      <div className="scatterChartBox">
+        <Scatter data={indicatorsData} options={options} />
+      </div>
     </div>
   );
 };
